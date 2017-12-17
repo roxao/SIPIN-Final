@@ -805,51 +805,7 @@ class Admin_model extends CI_Model {
 
                 break;
             case 'get-survey-result':
-                // QUERY BERDASARKAN survey_question yang aktif
-                // 
-                // CONTOH 
-                // NILAI     JUMLAH ORANG YANG MENJAWAB
-                // 1         * 0                           = 0
-                // 2         * 0                           = 0
-                // 3         * 3                           = 9
-                // 4         * 3                           = 12
-                // 5         * 9                           = 45
-                //      total= 15                     total= 66
-                // lalu 66/15 = 4.4
-                // nilai rata-rata 4.4
-
-                // CONTOH HASIL QUERY RESULT() JIKA DI UBAH KE JSON
-                // {
-                //   "id_survey_question": "1",
-                //   "version"           : "1",
-                //   "total_answer"      : "15",
-                //   "survey_questions"  : [
-                //     {
-                //       "no"       : "1",
-                //       "question" : "Question number 1",
-                //       "average"  : "4.4",
-                //       "answer": {
-                //         "1": "0",
-                //         "2": "0",
-                //         "3": "3",
-                //         "4": "3",
-                //         "5": "9"
-                //       }
-                //     },
-                //     {
-                //       "no": "2",
-                //       "question": "Question number 2",
-                //       "average"  : "4.4",
-                //       "answer": {
-                //         "1": "0",
-                //         "2": "0",
-                //         "3": "3",
-                //         "4": "3",
-                //         "5": "9"
-                //       }
-                //     }
-                //   ]
-                // }
+     
 
             $this->db->select('*');
             $this->db->from('survey_question sq');

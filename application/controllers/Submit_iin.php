@@ -753,7 +753,7 @@ class Submit_iin extends CI_Controller {
         case 'hasil-survei';
         $result = $this->admin_model->survey('get-survey-result', null)->result_array();
         // if (!$result) {
-        if (!is_null($result) or empty($result)) {
+        if (is_null($result) or empty($result)) {
             $result = $this->model->survey('vote', null)->result_array();
             $s_questions = json_decode($result[0]['question'], true);
             for ($x = 0;$x < count($s_questions);$x++) {
@@ -778,26 +778,28 @@ class Submit_iin extends CI_Controller {
             }
             // Set Question
             for ($i = 0;$i < count($q_result);$i++) {
-                for ($k = 0;$k < count($a_result[$i]);$k++) {
+                // Set Question Answer to 0
+                for ($k = 0;$k < count($a_result);$k++) {
                     if ($q_result[$i]['type'] == 'RATING') {
-                        $question[$i] = array('no' => $i + 1, 'question' => $q_result[$i]['msg'], 'average' => 0, 'answer' => array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0));
+                        $question[$i] = array('no' => $i+ 1, 'question' => $q_result[$i]['msg'], 'average' => 0, 'answer' => array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0));
                     }
                 }
-            }
-            // Set Answer By Question
-            for ($i = 0;$i < count($question);$i++) {
-                // Set participant answer to question index
-                for ($j = 0;$j < count($a_result[$i]);$j++) {
-                    $question[$i]['answer'][$a_result[$j][$i]['answer']]++;
+                // Set Question Answer
+                for ($j = 0;$j < count($a_result);$j++) {
+                    if ($q_result[$i]['type'] == 'RATING') {
+                        $question[$i]['answer'][$a_result[$j][$i]['answer']]++;
+                        $question[$i]['average'] = $question[$i]['average'] + $a_result[$j][$i]['answer'];
+                    } 
                 }
-                // Average
-                for ($x = 1;$x < (count($question[$i]['answer']) + 1);$x++) {
-                    $question[$i]['average']+= $question[$i]['answer'][$x] * $x;
-                }
-                $question[$i]['average'] = $question[$i]['average'] / count($a_result[$i]);
+                // RESULT AVERAGE
+                if ($q_result[$i]['type'] == 'RATING') {
+                     $question[$i]['average'] = $question[$i]['average'] / count($result);
+                } 
             }
+
             $data['survey'] = array('id_survey_questions' => $result[0]['id_survey_question'], 'version' => $result[0]['id_survey_question'], 'participant' => count($result), 'survey_questions' => $question);
         }
+
         $data['web_title'] = 'Hasil Survei Kepuasan Pelanggan';
         $this->set_template('survey-result', $data);
     break;
