@@ -899,10 +899,13 @@ class User_model extends CI_Model {
      public function get_iin()
      {
         
-        $this->db->select('iin.id_iin, iin.iin_number, iin.iin_established_date, iin.iin_expiry_date, applications.instance_name, applications.instance_email, applications.instance_phone, applications.mailing_location');
-        $this->db->from(TbuseR);
-        $this->db->join('iin', Tbuser.'.id_user=iin.id_user');
-        $this->db->join('applications','applications.id_user='.Tbuser.'.id_user');
+        $this->db->select('i.id_iin, i.iin_number, i.iin_established_date, i.iin_expiry_date, a.instance_name, a.instance_email, a.instance_phone, a.mailing_location');
+       $this->db->from(TbiiN.' i');
+        $this->db->join(TbuseR.' u', 'u.id_user=i.id_user');
+        $this->db->join('applications a', 'u.id_user=a.id_user');
+        // $this->db->group_by('u.id_user, i.id_iin, i.iin_established_date, i.iin_expiry_date, i.iin_number');
+        $where = ('a.id_application IN (SELECT MAX(id_application) FROM applications)');
+        $this->db->where($where);
         return $this->db->get(); 
      }
 
