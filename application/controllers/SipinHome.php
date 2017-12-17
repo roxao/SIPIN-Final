@@ -133,7 +133,7 @@ class SipinHome extends CI_Controller {
                         $subject = EMAILSBJREG;
                         $msg = EMAILMSGREG . base_url("SipinHome/verify/$encrypted_id");
                         
-                        // if ($this->user_model->sendMail($email, $username, $subject, $msg)) {
+                        if ($this->user_model->sendMail($email, $username, $subject, $msg)) {
                             if ($no_iin != "") {
                                 $get_passw = $this->model->get_user_password($no_iin);
                                 if ($get_passw->row()->iin_number == $no_iin) {
@@ -146,9 +146,9 @@ class SipinHome extends CI_Controller {
                             }
                             $this->session->set_flashdata('validasi-login', 'Anda berhasil melakukan registrasi, silahkan periksa pesan masuk email Anda, untuk mengaktifkan akun yang telah Anda buat');
                             $this->log("login", "Login", $username);
-                        // } else {
-                        //     $this->session->set_flashdata('validasi-login', 'Gagal melakukan registrasi');
-                        // }
+                        } else {
+                            $this->session->set_flashdata('validasi-login', 'Gagal melakukan registrasi');
+                        }
                     }
                 } else {
                     // $this->captcha();

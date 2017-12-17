@@ -630,7 +630,7 @@ class Admin_verifikasi_controller extends CI_Controller
     }
 
 
-//yg ini belum
+
     public function REUPL_BILL_REQ($id_application_status)
     {
         $data['aplication_setujui'] = $this->admin_model->get_application($id_application_status)->result();

@@ -641,7 +641,7 @@ class User_model extends CI_Model {
         $config['newline'] = "\r\n";
         $config['crlf'] = "\r\n";
         $this->email->initialize($config);
-        $this->email->from($smtp_user,'Badan Standarisasi Nasional');
+        $this->email->from($from_email,'Badan Standarisasi Nasional');
         $this->email->to($email);
         $this->email->subject($subject);
         // $this->email->message($msg."<br><br>".base_url("SipinHome/verify/$encrypted_id"));
@@ -655,7 +655,7 @@ class User_model extends CI_Model {
     public function sendMailContactUs($from_email,$username, $subject, $msg) {
         $encrypted_id = md5($email) ;
         // echo "|encrypted_id : {$encrypted_id} |"; 
-        $smtp_user = 'ifandimaulana05@gmail.com'; # ganti dengan email kalian
+        $smtp_user = 'andaru140789@gmail.com'; # ganti dengan email kalian
         // $email = 'kerjasama@bsn.go.id'; # ganti dengan email kalian
         // $subject = 'Verify Your Email Address';
 
