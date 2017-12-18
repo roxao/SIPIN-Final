@@ -45,19 +45,18 @@
               </tr>
           </thead>
           <tbody class="list">
-            <?php foreach($data as $keys=>$data) { ?>
-              <tr class="row_select"
-                  o-id_document_config="1"
-                  o-keys="IPPSA"
-                  o-display_name="Informasi Persyaratan Pendaftaran Sponsoring Authority"
-                  o-file_url="C:/xampp/htdocs/BSN/upload/static/F.PKS.8.0.1 Permintaan Informasi Pendaftaran IIN rev 2016.pdf"
-                  o-mandatory="1">
+            <?php foreach($data as $keys=>$data) {
+              echo '<tr class="row_select"';
+                  foreach($data_table as $x) {echo ' o-'.$x[0].'="'.$data[$x[0]].'"';}
+              echo '>';
+             ?>
+              
                   <td class="id_document_config" width="50" data-sort="id_document_config"><?=$keys+1?></td>
                   <td class="keys" width="50" data-sort="keys"><?=$data['keys']?></td>
                   <td class="display_name" width="400" data-sort="display_name"><?=$data['display_name']?></td>
                   <td class="file_url" width="120" data-sort="file_url"><?=$data['file_url']?></td>
                   <td class="mandatory" width="50" data-sort="mandatory"><?=($data['mandatory']==='1'? 'Ya':'Tidak')?></td>
-              </tr>
+              
             <?php } ?>
           </tbody>
         </table>
