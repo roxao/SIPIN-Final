@@ -17,11 +17,11 @@
             <input type="hidden" name="id_application" value="<?php echo ($data) ? $data[0]['id_application']: ''?>">
               <label class="input-data" style="flex:2">
                 Nama Pemohon
-                <input name="applicant" type="text" value="<?php echo ($data) ? $data[0]['applicant']: ''?>" required/>
+                <input name="applicant" type="text" value="<?php echo ($data) ? $data[0]['applicant']: ''?>" />
             </label>
               <label class="input-data">
                 Nomor Telepon Pemohon
-                <input name="applicant_phone_number" type="text" value="<?php echo ($data) ? $data[0]['applicant_phone_number']: ''?>" required/>
+                <input name="applicant_phone_number" type="text" value="<?php echo ($data) ? $data[0]['applicant_phone_number']: ''?>" />
               </label>
               <label class="input-data">
                 Tanggal Pengajuan
@@ -36,29 +36,29 @@
           <div class="data-entry-form">       
             <label class="input-data">
                 Nama Instansi
-                <input name="instance_name" type="text" value="<?php echo ($data) ? $data[0]['instance_name']: ''?>" required/>
+                <input name="instance_name" type="text" value="<?php echo ($data) ? $data[0]['instance_name']: ''?>" />
             </label>
             <label class="input-data">
                 Nama Direktur Utama/Manager/Kepala Divisi Pemohon
-                <input name="instance_director" type="text" value="<?php echo ($data) ? $data[0]['instance_director']: ''?>" required/>
+                <input name="instance_director" type="text" value="<?php echo ($data) ? $data[0]['instance_director']: ''?>" />
             </label>
             <div class="display-flex">
               <label class="input-data">
                   Email Instansi
-                  <input name="instance_email" type="email" value="<?php echo ($data) ? $data[0]['email']: ''?>" required/>
+                  <input name="instance_email" type="email" value="<?php echo ($data) ? $data[0]['email']: ''?>" />
               </label>
               <label class="input-data">
                   Nomor Telepon
-                  <input name="instance_phone" type="text" value="<?php echo ($data) ? $data[0]['instance_phone']: ''?>" required/>
+                  <input name="instance_phone" type="text" value="<?php echo ($data) ? $data[0]['instance_phone']: ''?>" />
               </label>
             </div>
             <label class="input-data">
                 Nomor Surat
-                <input name="mailing_number" type="text" value="<?php echo ($data) ? $data[0]['mailing_number']: ''?>" required/>
+                <input name="mailing_number" type="text" value="<?php echo ($data) ? $data[0]['mailing_number']: ''?>" />
             </label>
             <label class="input-data">
                 Lokasi Pengajuan
-                <input name="mailing_location" type="text" value="<?php echo ($data) ? $data[0]['mailing_location']: ''?>" required/>
+                <input name="mailing_location" type="text" value="<?php echo ($data) ? $data[0]['mailing_location']: ''?>" />
             </label>
           </div>
 
