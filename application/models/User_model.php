@@ -904,7 +904,7 @@ class User_model extends CI_Model {
         $this->db->join(TbuseR.' u', 'u.id_user=i.id_user');
         $this->db->join('applications a', 'u.id_user=a.id_user');
         // $this->db->group_by('u.id_user, i.id_iin, i.iin_established_date, i.iin_expiry_date, i.iin_number');
-        $where = ('a.id_application IN (SELECT MAX(id_application) FROM applications)');
+        $where = ('a.id_application IN (SELECT MAX(id_application) FROM applications group by id_user)');
         $this->db->where($where);
         return $this->db->get(); 
      }
