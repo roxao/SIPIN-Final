@@ -4,18 +4,18 @@
 			<div class="footer-contact-list">
 				<div class="footer-item-address">
 					<img src="<?=base_url('assets/location.svg')?>">
-					<div>Pusat Pendidikan dan Pemasyarakatan Standardisasi BSN<br/>
-						Gedung I BPPT Lt. 10, Jalan M.H. Thamrin No. 8 <br/>
+					<div>Pusat Kerjasama Stadardisasi BSN<br/>
+						Gedung I BPPT Lt. 12, Jalan M.H. Thamrin No. 8 <br/>
 						Jakarta Pusat, 10340
 					</div>
 				</div>
 				<div class="footer-item-phone">
 					<img src="<?=base_url('assets/phone.svg')?>">
-					<div>(021) 1234 1234<br/>(021) 1234 1234</div>
+					<div>(021) 391 7300</div>
 				</div>
 				<div class="footer-item-mail">
 					<img src="<?=base_url('assets/email.svg')?>">
-					<div>kerjasama@bsn.go.id</div>
+					<div>info.iin@bsn.go.id</div>
 				</div>
 
 			</div>

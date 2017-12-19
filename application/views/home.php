@@ -41,7 +41,7 @@
 				<img src="assets/logo.png" alt="" width="200px" >
 				<div>
 				Silakan mengisi form di bawah ini untuk melakukan permohonan IIN baru. Sebelum anda mengirim surat ini melalui sistem<br/><br/></div>
-				<div style="margin-bottom: 50px" ><a href="#" class="next_home_article">Selengkapnya</a></div>
+				<div style="margin-bottom: 50px" ><a href="<?php echo base_url();?>informasi-iin/layanan_issuer_identification_number_iin" class="next_home_article">Selengkapnya</a></div>
 			</article>
 
 			<div class="home-submit-iin-intro">

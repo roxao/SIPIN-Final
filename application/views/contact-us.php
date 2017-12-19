@@ -24,12 +24,12 @@
 	</div>
 	<div class="float_right detail-contact">
 		<div>
-			<h3>Pusat Pendidikan dan Pemasyarakatan Standardisasi BSN</h3>
-			<span>Gedung I BPPT Lt. 10</span>
+			<h3>Pusat Kerjasama Stadardisasi BSN</h3>
+			<span>Gedung I BPPT Lt. 12</span>
 			<span>Jalan M.H. Thamrin No. 8, </span>
 			<span>Jakarta Pusat, 10340</span>
-			<span>021 1234 1234 - 021 1234 1234</span>
-			<span>kerjasama@bsn.go.id</span>
+			<span>021 391 7300</span>
+			<span>info.iin@bsn.go.id</span>
 		</div>
 	</div>
 </div>
