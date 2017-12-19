@@ -21,10 +21,10 @@
 			</div>
 		</div>
 		<div class="footer_socmed">
-			<a href="http://youtube.com/"><svg class="sprite_icon" fill="#bb0000"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_yt")?>"/></svg></a>
-			<a href="http://twitter.com/"><svg class="sprite_icon" fill="#00aced"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_tw")?>"/></svg></a>
-			<a href="http://facebook.com/"><svg class="sprite_icon" fill="#3b5998"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_fb")?>"/></svg></a>
-			<a href="http://instagram.com/"><svg class="sprite_icon" fill="#bc2a8d"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_ig")?>"/></svg></a>
+			<a target="_blank" href="http://youtube.com/user/snibsn"><svg class="sprite_icon" fill="#bb0000"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_yt")?>"/></svg></a>
+			<a target="_blank" href="http://twitter.com/bsn_sni"><svg class="sprite_icon" fill="#00aced"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_tw")?>"/></svg></a>
+			<a target="_blank" href="http://facebook.com/BadanStandardisasiNasional"><svg class="sprite_icon" fill="#3b5998"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_fb")?>"/></svg></a>
+			<a target="_blank" href="http://instagram.com/bsn_sni"><svg class="sprite_icon" fill="#bc2a8d"><use xlink:href="<?=base_url("assets/ic_socmed.svg#ic_ig")?>"/></svg></a>
 		</div>
 		<div class="footer_copyright">
 			<div><img src="<?php echo base_url() ?>assets/logo.png" alt=""></div>
