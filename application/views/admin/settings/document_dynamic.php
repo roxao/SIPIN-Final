@@ -103,6 +103,10 @@
           $('[name=docType]').val('DYNAMIC');
         });
       })
+    if(getParameterByName('state')=='success'){
+        swal('','Data Berhasil Diubah','success');
+      }
+    
   </script>
   <style>
     tr th:first-child{text-align: center !important}
@@ -139,8 +143,8 @@
             <label>
                 <span>Mandatory</span>
                 <select name="mandatory">
-                  <option value="0">Ya</option>
-                  <option value="1">Tidak</option>
+                  <option value="0">Tidak</option>
+                  <option value="1">Ya</option>
                 </select>
               </label>
             <button class="btn-flat">LANJUTKAN</button>

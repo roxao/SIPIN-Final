@@ -74,6 +74,7 @@
     var url_i = "<?php echo base_url('dashboard/action_insert/document') ?>";
 
     $('document').ready(function(){
+
       document.title = '<?php echo $page_title ?>';
 
       $('#filtertable input').click(function(event) {
@@ -94,7 +95,12 @@
           $('#z-modal-edit').slideDown()
           $('.modal-form').attr('action', url_i);
         });
-      })
+      });
+
+      if(getParameterByName('state')=='success'){
+        swal('','Data Berhasil Diubah','success');
+      }
+
    });
 
     $('.row_select').on('click', function() {
@@ -143,8 +149,8 @@
             <label>
                 <span>Mandatory</span>
                 <select name="mandatory">
-                  <option value="0">Ya</option>
-                  <option value="1">Tidak</option>
+                  <option value="0">Tidak</option>
+                  <option value="1">Ya</option>
                 </select>
               </label>
             <button class="btn-flat">LANJUTKAN</button>

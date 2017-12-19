@@ -75,10 +75,10 @@
                 Tanggal Pengesahan
                 <input name="iin_established_date" type="date" value="<?php echo ($data) ? $data[0]['iin_established_date']: ''?>" required/>
               </label>
-              <label class="input-data">
+              <!-- <label class="input-data">
                 Tanggal Kadaluarsa
                 <input name="iin_expiry_date" type="date" value="<?php echo ($data) ? $data[0]['iin_expiry_date']: ''?>" required/>
-              </label>
+              </label> -->
             </div>
           </div>
           

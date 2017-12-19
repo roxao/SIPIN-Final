@@ -19,7 +19,7 @@
             <th style="min-width:55px"  class="sort click_auto"  data-sort="id_no">No.</th>
             <th style="min-width:300px" class="sort" data-sort="id_name">Detail Pemohon</th>
             <th style="min-width:150px" class="sort" data-sort="id_date_est">Tanggal Pengesahan</th>
-            <th style="min-width:150px" class="sort" data-sort="id_date_exp">Tanggal Kadaluarsa</th>
+            <!-- <th style="min-width:150px" class="sort" data-sort="id_date_exp">Tanggal Kadaluarsa</th> -->
             <th style="min-width:130px" class="sort" data-sort="id_iin_no">Nomor IIN</th>
           </tr>
           <tbody class="list">
@@ -35,9 +35,9 @@
                 <td>
                   <span class="id_date_est hidden"><?php echo $data->iin_established_date?></span>
                   <?php  echo date("D, d M Y", strtotime($data->iin_established_date)) ?></td>
-                <td>
-                  <span class="id_date_exp hidden"><?php echo $data->iin_expiry_date?></span>
-                  <?php  echo date("D, d M Y", strtotime($data->iin_expiry_date)) ?></td>
+                <!-- <td> -->
+                  <!-- <span class="id_date_exp hidden"><?php echo $data->iin_expiry_date?></span> -->
+                  <!-- <?php  echo date("D, d M Y", strtotime($data->iin_expiry_date)) ?></td> -->
                 <td class="id_iin_no"><?php  echo $data->iin_number ?></td>
               </tr>
             <?php $i++; } ?>

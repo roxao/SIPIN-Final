@@ -103,7 +103,7 @@
         var preview = $(this).next();
         $.upload_process($(this).prop('files')[0], 'banner').done(function(e){
           preview.css({'background-image': 'url("'+e.full_path+'")'}).addClass('upload-image-success');
-          $('.file_name').val(e.path_file+e.file_name);
+          $('.file_name').val(e.path_file+'/'+e.file_name);
         })
       })
 
