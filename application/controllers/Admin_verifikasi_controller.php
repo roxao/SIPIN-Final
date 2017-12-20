@@ -2238,22 +2238,29 @@ class Admin_verifikasi_controller extends CI_Controller
                 "upload_path"   => "./upload/",
                 "max_size"      => "10000"
              ));
-
-            if($this->upload->do_upload("doc")){
-
-                    $uploaded = $this->upload->data(); 
+            
+           
+            
 
              for($x=0; $x < $id_doc_conf->num_rows(); $x++) { 
+
+                 $in = "doc".$x;
+
+                if($this->upload->do_upload($in)){
+
+                    $uploaded = $this->upload->data(); 
                 
+                    
                         $data6 = array(
                             'id_application'=> $this->input->post('id_application'),
                             'id_document_config' => $id_doc_conf->row($x)->id_document_config,
                             'status' => 'ACTIVE',
                             'created_date' => $this->date_time_now(),
                             // 'path_file' => $doc[$y],uploaded
-                            'path_file' => $uploaded[$x]['full_path'],
+                            'path_file' => $uploaded['full_path'],
                             'created_by' => $this->session->userdata('admin_username')
                         );
+                        
                         //insert applications file untuk surat cra
                         $this->admin_model->insert_application_file($data6);  
 

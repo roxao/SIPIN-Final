@@ -163,7 +163,7 @@ $(document).ready(function() {
 		for (var j = 0; j < doc.length; j++) {
 			html  = '<div class="item-upload-v2 clearfix"><label class="input_dashed_file float_left" style="padding-right:10px">';
 			html +=	'Pilih Dokumen '+doc[j].display_name;
-			html +=	'<input name="doc[]" type="file" accept=".doc,.docx,.pdf,.png,.jpg" required/>';
+			html +=	'<input name="doc'+j+'[]" type="file" accept=".doc,.docx,.pdf,.png,.jpg" />';
 			html +=	'<span>Pilih</span><i class="float_right"></i>';
 			html +=	'</label></div>';
 			$(target).append(html);
