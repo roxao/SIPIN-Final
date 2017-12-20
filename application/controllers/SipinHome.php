@@ -151,11 +151,9 @@ class SipinHome extends CI_Controller {
                         }
                     }
                 } else {
-                    // $this->captcha();
                     $this->session->set_flashdata('validasi-login', 'password yang anda masukkan tidak sesuai');
                 }
         } else {
-            // $this->captcha();
             $this->session->set_flashdata('validasi-login', 'Password minimal 8 karakter dan harus huruf besar, huruf kecil, angka, dan special character (Contoh : aAz123@#');
         }
         redirect(base_url('registrasi'));
@@ -167,27 +165,20 @@ class SipinHome extends CI_Controller {
     @model user_model
     */
     public function forgot_password() {
-        if (($this->input->post('security_code_forgot') == $this->session->userdata('mycaptcha'))) {
-            $username_forgot = $this->input->post('E-mail');
-            $cek = $this->user_model->forgot_password($username_forgot);
-            if ($cek->num_rows() > 0) {
-                $encrypted_id = md5($username_forgot);
-                $subject = EMAILSBJFORGOTPASS;
-                $msg = EMAILMSGFORGOTPASS . base_url("/SipinHome/reset_password/$encrypted_id");
-                if ($this->user_model->sendMail($cek->row()->email, $cek->row()->name, $subject, $msg)) {
-                    $this->log("Forgot Password", "Forgot Password", $username_forgot);
-                    $this->session->set_flashdata('validasi-login', 'Link reset password telah dikirimkan, silahkan cek email anda');
-                } else {
-                    $this->captcha();
-                    $this->session->set_flashdata('validasi-login', 'Gagal melakukan reset password');
-                }
+        $username_forgot = $this->input->post('E-mail');
+        $cek = $this->user_model->forgot_password($username_forgot);
+        if ($cek->num_rows() > 0) {
+            $encrypted_id = md5($username_forgot);
+            $subject = EMAILSBJFORGOTPASS;
+            $msg = EMAILMSGFORGOTPASS . base_url("/SipinHome/reset_password/$encrypted_id");
+            if ($this->user_model->sendMail($cek->row()->email, $cek->row()->name, $subject, $msg)) {
+                $this->log("Forgot Password", "Forgot Password", $username_forgot);
+                $this->session->set_flashdata('validasi-login', 'Link reset password telah dikirimkan, silahkan cek email anda');
             } else {
-                $this->captcha();
-                $this->session->set_flashdata('validasi-login', 'Username/Email tidak ditemukan');
+                $this->session->set_flashdata('validasi-login', 'Gagal melakukan reset password');
             }
         } else {
-            $this->captcha();
-            $this->session->set_flashdata('validasi-login', 'Captcha tidak sesuai');
+            $this->session->set_flashdata('validasi-login', 'Username/Email tidak ditemukan');
         }
         $this->user('forgot');
     }
@@ -289,7 +280,7 @@ class SipinHome extends CI_Controller {
                     // $have_iin = ($cek->row()->iin_number ? $cek->row()->iin_number : "N");
                     $get_iin_num = $this->model->get_iin_num($get_passw->row()->id_user);
                     $have_iin = "N";
-                    if (!empty($get_iin_num->row()->iin_number)) {
+                    if (!is_null($get_iin_num->row()->iin_number)) {
                         #IIN exist
                         $have_iin = "Y";
                     }
@@ -335,27 +326,19 @@ class SipinHome extends CI_Controller {
         $regex = $this->regex($this->input->post('password-change'));
         if ($regex == "true") {
             if ($password_chg == $password_chg_confirm) {
-                if (($this->input->post('security_code_reset') == $this->session->userdata('mycaptcha'))) {
-                    $usr = $this->model->get_user_by_prm('email', $chg_email);
-                    #validate email_enc
-                    if (!is_null($usr)) {
-                        $this->model->Update_password($usr->row()->id_user, $usr->row()->username, $password_chg);
-                        $this->log("Change Password", "Change Password", $usr->row()->username);
-                        redirect(base_url());
-                    } else {
-                        $this->captcha();
-                        $this->session->set_flashdata('validasi-login', 'Email tidak ditemukan');
-                    }
+                $usr = $this->model->get_user_by_prm('email', $chg_email);
+                #validate email_enc
+                if (!is_null($usr)) {
+                    $this->model->Update_password($usr->row()->id_user, $usr->row()->username, $password_chg);
+                    $this->log("Change Password", "Change Password", $usr->row()->username);
+                    redirect(base_url());
                 } else {
-                    $this->captcha();
-                    $this->session->set_flashdata('validasi-login', 'Captcha tidak sesuai');
+                    $this->session->set_flashdata('validasi-login', 'Email tidak ditemukan');
                 }
             } else {
-                $this->captcha();
                 $this->session->set_flashdata('validasi-login', 'password baru yang anda masukkan tidak sesuai');
             }
         } else {
-            $this->captcha();
             $this->session->set_flashdata('validasi-login', 'Password baru minimal 8 karakter dan harus huruf besar, huruf kecil, angka, dan special character (Contoh : aAz123@#');
         }
         $this->user('changepassword');
@@ -392,18 +375,16 @@ class SipinHome extends CI_Controller {
             $id_application_status_name = $get_app_status->row()->id_application_status_name;
             $process_status = $get_app_status->row()->process_status;
             $application_type = $get_app_status->row()->application_type;
-            // echo "|get_app_status : ";
-            // print_r($get_app_status);
             $this->session->set_userdata('id_application', $id_application);
             $this->session->set_userdata('id_application_status', $id_application_status);
             $this->session->set_userdata('id_application_status_name', $id_application_status_name);
             $this->session->set_userdata('application_type', $application_type);
-            // echo "|APP TYPE : {$application_type}";
             /*
             Instantiate arr $data
             */
             $data = array('id_application_status_name' => $id_application_status_name,);
         }
+
         /*
         Default Var
         @page
@@ -412,7 +393,7 @@ class SipinHome extends CI_Controller {
         /*
         Instantiate arr $data
         */
-        $data = array('title' => '', 'text' => '', 'reject_msg' => '', 'adm_pay_msg' => '', 'state0' => '0', 'state2' => '', 'state3' => '', 'state4' => '', 'state5' => '', 'state6' => '', 'state8' => '', 'state7' => '');
+        $data = array('p1step9' => 'untuk mengunduh informasi penerbitan nomor IIN','titleStep9' => 'Menerima IIN Baru','buttonDownload9' => 'Download IIN','buttonStep9' => 'Menerima IIN Baru Berserta Kelengkapan Dokumen','title' => '', 'text' => '', 'reject_msg' => '', 'adm_pay_msg' => '', 'state0' => '0', 'state2' => '', 'state3' => '', 'state4' => '', 'state5' => '', 'state6' => '', 'state8' => '', 'state7' => '');
         $have_iin = $this->session->userdata('have_iin');
         $data['app_type'] = APPTYPENEW;
         $data['title_iin0'] = "Pengajuan Surat Permohonan IIN Baru";
@@ -442,6 +423,13 @@ class SipinHome extends CI_Controller {
         @THIS IS AN ACTIVE APPLICATION (New Application , type : new/extend)
         */
         if ($iin_status == 'OPEN') {
+            if ($have_iin == 'Y') {
+                $data['titleStep9'] = "Menerima Sertifikat IIN";
+                $data['buttonStep9'] = "Menerima Hasil Kunjungan Pengawasan dan Sertifikat IIN";
+                $data['p1step9'] = "untuk menerima hasil kunjungan pengawasan dan sertifikat IIN";
+                $data['buttonDownload9'] = "Download Sertifikat IIN";
+            } 
+
             if ($id_application_status_name >= '1') {
                 $data['step1_next'] = "";
                 $data['btn_step0'] = "";
@@ -867,7 +855,6 @@ class SipinHome extends CI_Controller {
                                             case 'COMPLETED':
                                                 $id_keys = array('IIN');
                                                 $data['iin_download'] = $this->user_model->get_assessment_team_doc($id_application_status, $id_keys);
-                                                // echo "IIN DOWNLOAD :".json_encode($data['iin_download']);
                                                 $page = '9';
                                             break;
                                         }

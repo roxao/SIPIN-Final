@@ -18,7 +18,7 @@
 			<li stepId="<?php echo $state6?>" class="<?php echo $box_status_6?>"><button>Menerima Konfirmasi Tim Verifikasi Lapangan</button></li>
 			<li stepId="<?php echo $state7?>" class="<?php echo $box_status_7?>"><button>Assessment Lapangan</button></li>
 			<li stepId="<?php echo $state8?>" class="<?php echo $box_status_8?>"><button>Proses Permohonan ke CRA</button></li>
-			<li stepId="9" class="<?php echo $box_status_9?>"><button>Menerima IIN Baru Berserta Kelengkapan Dokumen</button></li>
+			<li stepId="9" class="<?php echo $box_status_9?>"><button><?php echo $buttonStep9?></button></li>
 		</ul>
 
 		<script type="text/javascript">
@@ -33,56 +33,9 @@
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("SipinHome"));
 		}
-
-
-		// $this->load->view('submitIIN/step0');
-
 		for ($x=0; $x <= (int)$page ; $x++) {
 			$this->load->view('submitIIN/step'.$x);
 		}
-		// if ($page >= '1') {
-		// 	// $this->load->view('submitIIN/step1',$data);
-		// 	$this->load->view('submitIIN/step1');
-    //
-		// 	if ($page >= '2') {
-		// 		// $this->load->view('submitIIN/step2',$data,$id_user);
-		// 		$this->load->view('submitIIN/step2');
-    //
-		// 		if ($page >= '3') {
-		// 			// $this->load->view('submitIIN/step3',$data,$id_user);
-		// 			$this->load->view('submitIIN/step3');
-    //
-		// 			if ($page >= '4') {
-		// 				// $this->load->view('submitIIN/step4',$data);
-		// 				$this->load->view('submitIIN/step4');
-    //
-		// 				if ($page >= '5') {
-		// 					// $this->load->view('submitIIN/step5',$data);
-		// 					$this->load->view('submitIIN/step5');
-		// 					if ($page >= '6') {
-		// 						// $this->load->view('submitIIN/step6',$datas, $data);
-		// 						$this->load->view('submitIIN/step6');
-    //
-		// 						if ($page >= '7') {
-		// 							// $this->load->view('submitIIN/step7',$data);
-		// 							$this->load->view('submitIIN/step7');
-		// 							if ($page >= '8') {
-		// 								// $this->load->view('submitIIN/step8',$data);
-		// 								$this->load->view('submitIIN/step8');
-    //
-		// 								if ($page >= '9') {
-		// 									// $this->load->view('submitIIN/step9',$data);
-		// 									$this->load->view('submitIIN/step9');
-    //
-		// 								}
-		// 							}
-		// 						}
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
 
 		$data['process_view'] = array(
 			'title' => $title,

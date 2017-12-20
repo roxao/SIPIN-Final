@@ -1,14 +1,14 @@
 <section section-id="9" class="section_iin float_right" style="display:none">
-	<h1 class="title_iin">Menerima IIN Baru</h1>
+	<h1 class="title_iin"><?php echo $titleStep9?></h1>
 	<p>Permohonan IIN yang sudah Anda ajukan, sudah disetujui dan dikeluarkan oleh Otoritas Registrasi dalam hal ini ABA.</p>
 	<br>
-	<p>Silakan klik tombol “Download IIN” untuk mengunduh informasi penerbitan nomor IIN. Namun sebelumnya akan ada halaman pengisian questioner / survey kepuasan pelanggan untuk meningkatkan kualitas pelayanan kami sebagai Sekretariat Layanan Otoritas Sponsor.</p>
+	<p>Silakan klik tombol "<?php echo $buttonDownload9?>” <?php echo $p1step9?>. Namun sebelumnya akan ada halaman pengisian questioner / survey kepuasan pelanggan untuk meningkatkan kualitas pelayanan kami sebagai Sekretariat Layanan Otoritas Sponsor.</p>
 	</br>
 	<p>
 	<p>Atau</p>
 	</br>
 	<p>	
-	<p>Silakan klik tombol "Akhiri Permohonan” untuk memulai proses permohonan IIN baru dan mengakhiri proses permohonan IIN Anda.</p>
+	<p>Silakan klik tombol "Akhiri Permohonan” untuk memulai proses pengawasan IIN Lama dan mengakhiri proses permohonan IIN Anda.</p>
 	</br>
 	<p>	
 	Demikian kami sampaikan, atas perhatian dan kerjasama yang diberikan, kami mengucapkan terima kasih.
@@ -31,7 +31,7 @@
 		 	 		case 'IIN':?>
 		 				<div class="clearfix">
 							<a href="<?php echo base_url()?>submit_iin/download_iin?var1=<?php echo $data->path_file;?> ">
-								<button style="background: #01923f" class="float_right " >Download IIN</button>
+								<button style="background: #01923f" class="float_right " ><?php echo $buttonDownload9?></button>
 							</a>
 						</div>
 		<?php 	
