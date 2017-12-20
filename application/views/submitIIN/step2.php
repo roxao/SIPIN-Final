@@ -54,7 +54,6 @@
 <script>
 	$("input[type=file]").change(function() {
 	    var fileName = $(this).val().split('/').pop().split('\\').pop();
-	    swal(fileName);
 	    $(this).next().html(fileName);
 		$(this).parent().prev().prop('checked',(fileName.length>1?true:false));
 	});

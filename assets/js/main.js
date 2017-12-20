@@ -154,15 +154,18 @@ function carousel(data) {
     d = a.children('.item_slideshow');
     i = 0;
 
-	c_dot(a);
+    if (d.length > 1) {
+        c_dot(a);
 
-    run_();
+        run_();
 
-    a.hover(function() {
-        clearInterval(n)
-    }, function() {
-        run_()
-    });
+        a.hover(function() {
+            clearInterval(n)
+        }, function() {
+            run_()
+        });
+    }
+	
 
     function run_() {
         n = setInterval(function() {
@@ -188,16 +191,16 @@ function carousel(data) {
     	for (var i = d.length - 1; i >= 0; i--) {
     		y.append($('<div>').addClass('item-slide-control'));
     	}
-    	create_arrow(x);
-    	z = y.children('.item-slide-control');
-    	z.on('click', function() {
-    		v = z.index(this);
-    		run_fx(v, true)
-    	});
-    	d.hide();
-   		d.eq(i).show();
-   		z.eq(i).addClass('active');
 
+        create_arrow(x);
+        z = y.children('.item-slide-control');
+        z.on('click', function() {
+            v = z.index(this);
+            run_fx(v, true)
+        });
+        d.hide();
+        d.eq(i).show();
+        z.eq(i).addClass('active');
     }
 
     function create_arrow(x){
