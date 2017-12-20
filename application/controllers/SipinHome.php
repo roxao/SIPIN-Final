@@ -25,21 +25,7 @@ class SipinHome extends CI_Controller {
         $this->load->view('footer', $data);
         return;
     }
-    public function captcha() {
-        $this->load->helper('captcha');
-        $vals = array(
-        //'word' => 'Random word',
-        'img_path' => './captcha/', 'img_url' => base_url() . 'captcha/', 'img_width' => '200', 'img_height' => 32, 'border' => 0, 'expiration' => 7200, 'word_length' => 6, 'font_size' => 20,
-        //'img_id' => 'Imageid',
-        //'pool' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        // White background and border, black text and red grid
-        'colors' => array('background' => array(255, 255, 255), 'border' => array(255, 255, 255), 'text' => array(0, 0, 0), 'grid' => array(255, 200, 200)));
-        $cap = create_captcha($vals);
-        $this->session->set_userdata('mycaptcha', $cap['word']);
-        $this->session->set_userdata('myimgcaptcha', $cap['image']);
-        $data['image'] = $cap['image'];
-        return $data;
-    }
+
     public function date_time_now() {
         /*
         SET TIMEZONE ASIA/JAKARTA
@@ -67,7 +53,7 @@ class SipinHome extends CI_Controller {
     }
     // ALDY: LOGIN USER
     public function user($param) {
-        // $this->captcha();
+
         $data['type'] = $param;
         $message = $this->session->flashdata('validasi-login');
         $data['message'] = $message;
@@ -95,7 +81,6 @@ class SipinHome extends CI_Controller {
     }
     /*
     Register function.
-    @function captcha()
     @var name
     @var username
     @var no_iin
@@ -117,9 +102,6 @@ class SipinHome extends CI_Controller {
             $email_enc = md5($email);
             $password = hash("sha256", $this->input->post('password'));
             $password_confirm = hash("sha256", $this->input->post('retype-password'));
-            /*
-            Captcha Validation
-            */
                 if ($password == $password_confirm) {
                     /*
                     User Status Validation
@@ -151,11 +133,11 @@ class SipinHome extends CI_Controller {
                         }
                     }
                 } else {
-                    // $this->captcha();
+
                     $this->session->set_flashdata('validasi-login', 'password yang anda masukkan tidak sesuai');
                 }
         } else {
-            // $this->captcha();
+
             $this->session->set_flashdata('validasi-login', 'Password minimal 8 karakter dan harus huruf besar, huruf kecil, angka, dan special character (Contoh : aAz123@#');
         }
         redirect(base_url('registrasi'));
@@ -167,7 +149,6 @@ class SipinHome extends CI_Controller {
     @model user_model
     */
     public function forgot_password() {
-        if (($this->input->post('security_code_forgot') == $this->session->userdata('mycaptcha'))) {
             $username_forgot = $this->input->post('E-mail');
             $cek = $this->user_model->forgot_password($username_forgot);
             if ($cek->num_rows() > 0) {
@@ -178,17 +159,11 @@ class SipinHome extends CI_Controller {
                     $this->log("Forgot Password", "Forgot Password", $username_forgot);
                     $this->session->set_flashdata('validasi-login', 'Link reset password telah dikirimkan, silahkan cek email anda');
                 } else {
-                    $this->captcha();
                     $this->session->set_flashdata('validasi-login', 'Gagal melakukan reset password');
                 }
             } else {
-                $this->captcha();
                 $this->session->set_flashdata('validasi-login', 'Username/Email tidak ditemukan');
             }
-        } else {
-            $this->captcha();
-            $this->session->set_flashdata('validasi-login', 'Captcha tidak sesuai');
-        }
         $this->user('forgot');
     }
     public function reset_password() {
@@ -238,7 +213,7 @@ class SipinHome extends CI_Controller {
         /*Calling user_model->verifyEmail to verify activation link*/
         $this->user_model->verifyEmail($enc);
         /*Get Registration Message on Current Session*/
-        echo $this->session->flashdata('regis_msg');
+        // echo $this->session->flashdata('regis_msg');
         redirect(base_url());
     }
     /*Regex validasi karakter password*/
@@ -267,7 +242,7 @@ class SipinHome extends CI_Controller {
         #get password to validate username/email/iin
         $get_passw = $this->model->get_user_password($username);
         #if user login using old IIN, and havn't registered yet
-        if (is_null($get_passw->row()->password)) {
+        if (!isset($get_passw->row()->password)) {
             redirect(base_url('registrasi'));
         } else {
             #password don't match with database
@@ -335,7 +310,6 @@ class SipinHome extends CI_Controller {
         $regex = $this->regex($this->input->post('password-change'));
         if ($regex == "true") {
             if ($password_chg == $password_chg_confirm) {
-                if (($this->input->post('security_code_reset') == $this->session->userdata('mycaptcha'))) {
                     $usr = $this->model->get_user_by_prm('email', $chg_email);
                     #validate email_enc
                     if (!is_null($usr)) {
@@ -343,19 +317,12 @@ class SipinHome extends CI_Controller {
                         $this->log("Change Password", "Change Password", $usr->row()->username);
                         redirect(base_url());
                     } else {
-                        $this->captcha();
                         $this->session->set_flashdata('validasi-login', 'Email tidak ditemukan');
                     }
-                } else {
-                    $this->captcha();
-                    $this->session->set_flashdata('validasi-login', 'Captcha tidak sesuai');
-                }
             } else {
-                $this->captcha();
                 $this->session->set_flashdata('validasi-login', 'password baru yang anda masukkan tidak sesuai');
             }
         } else {
-            $this->captcha();
             $this->session->set_flashdata('validasi-login', 'Password baru minimal 8 karakter dan harus huruf besar, huruf kecil, angka, dan special character (Contoh : aAz123@#');
         }
         $this->user('changepassword');
@@ -369,7 +336,6 @@ class SipinHome extends CI_Controller {
     @var process_status
     */
     public function submit_application() {
-        $this->captcha();
         $userIdReq = $this->input->get('userIdSelected', TRUE);
         if (null == $userIdReq || "" == $userIdReq) {
             $id_user = $this->session->userdata('id_user');

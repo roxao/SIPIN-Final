@@ -10,7 +10,7 @@
 				?>
 
 				<li class="item-upload">
-					<input type="checkbox" <?php echo (($upload_status == "success") ? "checked ": "" );?> disabled/>
+					<input type="checkbox" <?php echo (($upload_status == "success") ? "checked ": "" );?>/>
 					<span>
 						<?php
 							$mandatory = ($data->mandatory === '1') ? '*': '' ;
@@ -55,8 +55,22 @@
 	$("input[type=file]").change(function() {
 	    var fileName = $(this).val().split('/').pop().split('\\').pop();
 	    $(this).next().html(fileName);
-		$(this).parent().prev().prop('checked',(fileName.length>1?true:false));
+		$(this).parent().parent().find('[type=checkbox]').prop('checked',(fileName.length>1?true:false));
 	});
+
+	$(".item-upload [type=checkbox]").change(function(e){
+		var input 	= $(this).parent().find('[type=file]');
+		var fileData= input[0].files.length;
+		if($(this).is(':checked') && fileData == 0){
+			$(this).prop('checked',false)
+		} else {
+			if($(this).not(':checked') && fileData != 0){
+				input.val('');
+				$(this).parent().find('i').html('')
+			}  
+		}
+			
+	})
 </script>
 <script type="text/javascript">
 

@@ -24,21 +24,7 @@ class Submit_iin extends CI_Controller {
         $datetime = new DateTime('Asia/Jakarta');
         return $datetime->format('Y\-m\-d\ H:i:s');
     }
-    public function captcha() {
-        $this->load->helper('captcha');
-        $vals = array(
-        //'word' => 'Random word',
-        'img_path' => './captcha/', 'img_url' => base_url() . 'captcha/', 'img_width' => '200', 'img_height' => 32, 'border' => 0, 'expiration' => 7200, 'word_length' => 6, 'font_size' => 20,
-        //'img_id' => 'Imageid',
-        //'pool' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        // White background and border, black text and red grid
-        'colors' => array('background' => array(255, 255, 255), 'border' => array(255, 255, 255), 'text' => array(0, 0, 0), 'grid' => array(255, 200, 200)));
-        $cap = create_captcha($vals);
-        $this->session->set_userdata('mycaptcha', $cap['word']);
-        $this->session->set_userdata('myimgcaptcha', $cap['image']);
-        $data['image'] = $cap['image'];
-        return $data;
-    }
+
     /*
     INSERT LOG
     */
@@ -84,7 +70,7 @@ class Submit_iin extends CI_Controller {
                     insert id_application_status_name => x(defined on above validation) Pending
                     */
                     // if ( is_null($get_document->row()->iin_status ) ) {
-                    if ($get_document->row()->iin_status != 'OPEN') {
+                    if (isset($get_document->row()->iin_status) && $get_document->row()->iin_status != 'OPEN') {
                         /*Insert Pengajuan*/
                         $inserted_id = $this->user_model->insert_pengajuan($data);
                         $data1 = array(
@@ -107,14 +93,14 @@ class Submit_iin extends CI_Controller {
                         */
                         redirect(base_url("Layanan-IIN"));
                     } else {
-                        echo "|ERR: Controller submit_iin - function step_0";
+                        // echo "|ERR: Controller submit_iin - function step_0";
                     }
                 } else {
-                    echo "Dibatalkan";
+                    // echo "Dibatalkan";
                     redirect(base_url("Layanan-IIN"));
                 }
             } else {
-                echo "|Tidak dapat melakukan pengajuan - Masih ada aplikasi dengan iin_status 'OPEN'|";
+                // echo "|Tidak dapat melakukan pengajuan - Masih ada aplikasi dengan iin_status 'OPEN'|";
                 redirect(base_url(''));
             }
         }
@@ -147,7 +133,7 @@ class Submit_iin extends CI_Controller {
             }
             return $app_status;
         } else {
-            echo "ERROR :: Controller submit_iin - check_app_status | id_application NOT FOUND!";
+            // echo "ERROR :: Controller submit_iin - check_app_status | id_application NOT FOUND!";
             return "x";
         }
     }
@@ -182,7 +168,7 @@ class Submit_iin extends CI_Controller {
             }
             redirect(base_url("Layanan-IIN"));
         } else {
-            echo "ERROR :: Controller submit_iin - check_app_status | id_application NOT FOUND!";
+            // echo "ERROR :: Controller submit_iin - check_app_status | id_application NOT FOUND!";
         }
     }
     /*
@@ -629,7 +615,7 @@ class Submit_iin extends CI_Controller {
                 array_push($uploaded, $this->upload->data());
                 array_push($key, $key3_arr[$i]);
             } else {
-                echo "|ERR : {$usr_file}";
+                // echo "|ERR : {$usr_file}";
             }
         }
         if ($this->input->post('upload') == "uploadstep7") {
@@ -682,7 +668,7 @@ class Submit_iin extends CI_Controller {
                 array_push($uploaded, $this->upload->data());
                 array_push($key, $explode_str[$i]);
             } else {
-                echo "|ERR : {$usr_file}";
+                // echo "|ERR : {$usr_file}";
             }
         }
         if ($this->input->post('upload') == "uploadstep3") {

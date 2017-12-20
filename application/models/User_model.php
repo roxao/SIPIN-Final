@@ -797,17 +797,17 @@ class User_model extends CI_Model {
     /*Email Activation and status_user update*/
     public function verifyEmail($key) {
         // nilai dari status yang berawal dari Tidak Aktif akan diubah menjadi Aktif disini
-        echo " keys : {$key}|";
+        // echo " keys : {$key}|";
         $this->db->from(TbuseR);
         $this->db->where('email_enc', $key);
         $query = $this->db->get()->row();
-        echo "SIZE : ".sizeof($query)."|";
+        // echo "SIZE : ".sizeof($query)."|";
         
         if ($query) {
             $username = $query->username;
             $email = $query->email;
             $status = $query->status_user;
-            echo "username : ".$username."|"."email : ".$email."|"."status : ".$status."|";
+            // echo "username : ".$username."|"."email : ".$email."|"."status : ".$status."|";
             if ($status == 1) {
                 /*Set Registration Message on Current Session*/
                 $this->session->set_flashdata('regis_msg', "Email Anda Telah Aktif!");
