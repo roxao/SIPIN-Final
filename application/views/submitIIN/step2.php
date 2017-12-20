@@ -54,6 +54,7 @@
 <script>
 	$("input[type=file]").change(function() {
 	    var fileName = $(this).val().split('/').pop().split('\\').pop();
+	    swal(fileName);
 	    $(this).next().html(fileName);
 		$(this).parent().prev().prop('checked',(fileName.length>1?true:false));
 	});
@@ -74,6 +75,7 @@
 		var temp = "";
 		$(".fileChoser").each(function(){
 			var value = $(this).val();
+			var attr = $(this).attr('required');
 			// alert(value);
 			if(value != null && value != ""){
 
@@ -82,12 +84,18 @@
 				} else {
 					temp = temp +","+$(this).attr("id");
 				}
+			} else {
+				// For some browsers, `attr` is undefined; for others,
+				// `attr` is false.  Check for both.
+				if (typeof attr !== typeof undefined && attr !== false) {
+					swal('','Mohon unggah semua dokumen wajib','warning');
+				}	
 			}
+
+				
 		});
 
 		$("#no_count").val(temp);
-
-		// alert($("#no_count").val());
 	}
 </script>
 
