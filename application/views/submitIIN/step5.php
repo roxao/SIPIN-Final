@@ -4,7 +4,7 @@
 
 
 	<h1 class="title_iin"><?php echo $title_iin2;?></h1>
-	<p><?php echo $adm_pay_msg;?></p>
+	<p style="color: red"><?php echo $adm_pay_msg;?></p>
 	<br>
 	<p><?php echo $text_iin2;?></p>
 
@@ -15,11 +15,8 @@
 	<label class="button-upload-big upload_payment_img">
 		<img src="<?php base_url() ?>assets/upload.svg" alt="">
 		<input type="file" name="file" required />
-		<!-- <input type="file" name="images[]" /> -->
 		<span></span>
 	</label>
-<!-- 
-	<div><center>Bukti Transfer PT. Codysseia</center></div> -->
 	
 	<br/><br/>
 
