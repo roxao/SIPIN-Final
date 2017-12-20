@@ -339,7 +339,7 @@ class Dashboard extends CI_Controller {
                 $log = array('detail_log' => $this->session->userdata('admin_role') . ' Update Data Banner', 'log_type' => 'Update Data Banner', 'created_date' => $this->date_time_now(), 'created_by' => $this->session->userdata('admin_username'));
                 $this->admin_model->update_banner($condition, $data);
                 $this->admin_model->insert_log($log);
-                redirect('dashboard/settings/banner');
+                redirect('dashboard/settings/banner?state=success');
                 break;
             case 'iin':
                 $condition = array('id_iin' => $this->input->post('id_iin'));

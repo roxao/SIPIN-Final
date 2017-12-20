@@ -129,5 +129,9 @@
         x_form.find('[name=url]').val($(this).children('.link').text());
         x_form.find('[name=description]').val($(this).children('.text').text());
       })
+
+     if(getParameterByName('state')=='success'){
+        swal('','Data Berhasil Diubah','success');
+      }
   </script>
 </section>
