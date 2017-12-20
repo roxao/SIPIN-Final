@@ -776,7 +776,10 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
       font-size: 12px;
     }
     &:-webkit-autofill{
-      -webkit-box-shadow: 0 0 0 50px $c_grey inset
+      -webkit-box-shadow: 0 0 0 50px $c_grey inset;
+         -moz-box-shadow: 0 0 0 50px $c_grey inset;
+          -ms-box-shadow: 0 0 0 50px $c_grey inset;
+              box-shadow: 0 0 0 50px $c_grey inset;
     }
 
   }
@@ -790,7 +793,10 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
     color: $c_red;
   }
   input:focus , &:-webkit-autofill{
-      -webkit-box-shadow: 0 0 0 50px $c_grey inset
+      -webkit-box-shadow: 0 0 0 50px $c_grey inset;
+         -moz-box-shadow: 0 0 0 50px $c_grey inset;
+          -ms-box-shadow: 0 0 0 50px $c_grey inset;
+              box-shadow: 0 0 0 50px $c_grey inset;
     }
 }
 
@@ -2386,7 +2392,7 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
 
 
 #section-survey{
-  max-width: 800px;
+  max-width: 1000px;
   padding: 20px;
   box-sizing: border-box;
   margin: 150px auto 0;
@@ -2428,7 +2434,7 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
           display: flex;
           .quiz-no{
               flex: 1;
-              max-width: 20px;
+              max-width: 35px;
               padding-right:0;
               padding-left: 10px;
           }
@@ -2436,36 +2442,58 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
               flex: 1;
               padding-right:20px;
               padding-left: 0px;
+              display: flex
+          }
+          .the-label{
+            line-height: 65px
           }
       }
       .answer-choice{
           box-sizing: border-box;
           display: block;
-          padding: 0 10px 0 25px;
-          min-width: 100px;
+          padding: 0 10px 0 20px;
+          width: 250px;
           border-left: 1px solid #eee;
+          text-align: center;
           .answer-rate{
             display: flex;
           }
           .answer-hint{
             color: rgba(127, 143, 164, 0.8);
           }
+
+          .the-caption{
+            flex: 1;
+            height: 20px;
+          }
           label{
-              background: url('rate.png') left center no-repeat;
               flex: 1;
-              min-width: 26px;
-              position: relative;
-              text-align: center;
               font-size: 0;
-              margin-top: 5px;
-              &:hover{
-                cursor: pointer;
+              width: 36px;
+              position:relative;
+              &:after{
+                content: '';
+                display: inline-block;
+                max-width: 20px;
+                min-width: 20px;
+                margin: 5px;
+                height: 20px;
+                border-radius: 50px;
+                box-shadow: inset 0 0 0 3px rgba(0,0,0,.2);
+                transition: all 1s ease;
+              }
+              &:hover:after{
+                cursor: pointer !important;
+                background:  rgba(0,0,0,.4);
+                box-shadow: inset 0 0 0 3px rgba(0,0,0,.4),inset 0 0 0 7px white;
+                transition: all 1s ease;
               }
           }
           [type=radio]{display: none}
-
-          input:checked ~ label{
-              background: url('unrate.png') left center no-repeat;
+          input:checked + label:after {
+            box-shadow: inset 0 0 0 3px $c_1st,inset 0 0 0 7px white;
+            background: $c_1st;
+            transition: all 1s ease;
           }
       }
       &.comment{

@@ -19,8 +19,8 @@
             <div class="id_no"> <?= $x['no'] ?> </div>
             <div class="id_qs"> <?= $x['question'] ?> </div>
             <div class="id_as td-stars">
-              <div class="c-rating_no"><span><?=number_format($x['average'],1)?></span>/5</div>
-              <div class="c-rating">
+              <div class="c-rating_no"><span><?=(number_format($x['average'],1)*2)?></span>/10</div>
+              <div class="c-rating hidden">
                 <div class="c-rating_bg"></div>
                 <div class="c-rating_fg" style="width: <?=((100/5)*$x['average'])?>%"></div>
               </div>

@@ -2,7 +2,7 @@
 /*RESET DEFAULT HTML*/
 ::-webkit-scrollbar {
   width: 10px;
-  background: transparent; }
+  background: rgba(0, 0, 0, 0); }
   ::-webkit-scrollbar:window-inactive {
     width: 0; }
 
@@ -75,8 +75,8 @@ a {
   color: #ccc; }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-  background: transparent !important;
-  -webkit-box-shadow: 0 0 0 30px transparent inset; }
+  background: rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0) inset; }
 
 #the-canvas {
   background: #eee; }
@@ -620,7 +620,7 @@ footer {
 
 .panel_input {
   padding: 7px 15px;
-  background: transparent;
+  background: rgba(0, 0, 0, 0);
   border: 1px solid #ddd;
   border-radius: 2px; }
 
@@ -680,7 +680,10 @@ footer {
       font-weight: 100;
       font-size: 12px; }
     .input_class input:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0 50px #f2f4f7 inset; }
+      -webkit-box-shadow: 0 0 0 50px #f2f4f7 inset;
+      -moz-box-shadow: 0 0 0 50px #f2f4f7 inset;
+      -ms-box-shadow: 0 0 0 50px #f2f4f7 inset;
+      box-shadow: 0 0 0 50px #f2f4f7 inset; }
   .input_class small {
     padding: 5px 0;
     display: block;
@@ -689,7 +692,10 @@ footer {
   .input_class span {
     color: #ff0000; }
   .input_class input:focus, .input_class:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 50px #f2f4f7 inset; }
+    -webkit-box-shadow: 0 0 0 50px #f2f4f7 inset;
+    -moz-box-shadow: 0 0 0 50px #f2f4f7 inset;
+    -ms-box-shadow: 0 0 0 50px #f2f4f7 inset;
+    box-shadow: 0 0 0 50px #f2f4f7 inset; }
 
 .btn_modal_flat {
   box-shadow: none;
@@ -793,7 +799,7 @@ footer {
   padding: 10px 40px;
   margin: 50px 0 0 0;
   font-size: 13px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(0, 0, 0, 0);
   background: #fff;
   box-shadow: none; }
 
@@ -1096,7 +1102,7 @@ footer {
     display: block;
     width: 100%;
     border: 0;
-    background: transparent;
+    background: rgba(0, 0, 0, 0);
     font-size: 13px;
     padding: 25px 0 5px 12px;
     z-index: 1px; }
@@ -1191,7 +1197,7 @@ footer {
     display: inline-block;
     padding: 5px;
     margin: 0 5px;
-    border-bottom: 3px solid transparent;
+    border-bottom: 3px solid rgba(0, 0, 0, 0);
     font-size: 13px;
     color: #777;
     line-height: 28px; }
@@ -1213,7 +1219,7 @@ footer {
   margin: 5px; }
 
 .table_def tr td:first-child {
-  border-left: 5px solid transparent; }
+  border-left: 5px solid rgba(0, 0, 0, 0); }
 .table_def tr:hover td {
   cursor: pointer;
   background: #fffbe7;
@@ -1320,7 +1326,7 @@ footer {
   height: 24px;
   max-width: 24px;
   min-width: auto;
-  color: transparent;
+  color: rgba(0, 0, 0, 0);
   background-size: cover;
   box-shadow: none; }
 
@@ -1407,7 +1413,7 @@ footer {
   .custom_select:after {
     content: '';
     display: table;
-    border: 5px solid transparent;
+    border: 5px solid rgba(0, 0, 0, 0);
     border-top-color: #555;
     position: absolute;
     right: 10px;
@@ -2019,7 +2025,7 @@ footer {
     background: rgba(0, 0, 0, 0.1); }
 
 #section-survey {
-  max-width: 800px;
+  max-width: 1000px;
   padding: 20px;
   box-sizing: border-box;
   margin: 150px auto 0;
@@ -2055,37 +2061,56 @@ footer {
       display: flex; }
       #questionnaire .questionnaire .quiz-question .quiz-no {
         flex: 1;
-        max-width: 20px;
+        max-width: 35px;
         padding-right: 0;
         padding-left: 10px; }
       #questionnaire .questionnaire .quiz-question .quiz-question-content {
         flex: 1;
         padding-right: 20px;
-        padding-left: 0px; }
+        padding-left: 0px;
+        display: flex; }
+      #questionnaire .questionnaire .quiz-question .the-label {
+        line-height: 65px; }
     #questionnaire .questionnaire .answer-choice {
       box-sizing: border-box;
       display: block;
-      padding: 0 10px 0 25px;
-      min-width: 100px;
-      border-left: 1px solid #eee; }
+      padding: 0 10px 0 20px;
+      width: 250px;
+      border-left: 1px solid #eee;
+      text-align: center; }
       #questionnaire .questionnaire .answer-choice .answer-rate {
         display: flex; }
       #questionnaire .questionnaire .answer-choice .answer-hint {
         color: rgba(127, 143, 164, 0.8); }
-      #questionnaire .questionnaire .answer-choice label {
-        background: url("rate.png") left center no-repeat;
+      #questionnaire .questionnaire .answer-choice .the-caption {
         flex: 1;
-        min-width: 26px;
-        position: relative;
-        text-align: center;
+        height: 20px; }
+      #questionnaire .questionnaire .answer-choice label {
+        flex: 1;
         font-size: 0;
-        margin-top: 5px; }
-        #questionnaire .questionnaire .answer-choice label:hover {
-          cursor: pointer; }
+        width: 36px;
+        position: relative; }
+        #questionnaire .questionnaire .answer-choice label:after {
+          content: '';
+          display: inline-block;
+          max-width: 20px;
+          min-width: 20px;
+          margin: 5px;
+          height: 20px;
+          border-radius: 50px;
+          box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.2);
+          transition: all 1s ease; }
+        #questionnaire .questionnaire .answer-choice label:hover:after {
+          cursor: pointer !important;
+          background: rgba(0, 0, 0, 0.4);
+          box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.4), inset 0 0 0 7px white;
+          transition: all 1s ease; }
       #questionnaire .questionnaire .answer-choice [type=radio] {
         display: none; }
-      #questionnaire .questionnaire .answer-choice input:checked ~ label {
-        background: url("unrate.png") left center no-repeat; }
+      #questionnaire .questionnaire .answer-choice input:checked + label:after {
+        box-shadow: inset 0 0 0 3px #507299, inset 0 0 0 7px white;
+        background: #507299;
+        transition: all 1s ease; }
     #questionnaire .questionnaire.comment {
       display: block; }
       #questionnaire .questionnaire.comment .quiz-answer-content {
@@ -2412,7 +2437,7 @@ footer {
           .home-submit-iin-intro > article div a span:hover:before {
             width: 500px;
             height: 500px;
-            background: transparent;
+            background: rgba(0, 0, 0, 0);
             transition: all 1s ease; }
     .home-submit-iin-intro > article.blue-item {
       background: -webkit-linear-gradient(left top, #507299, #7996B7);
