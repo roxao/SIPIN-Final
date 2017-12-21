@@ -73,56 +73,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-// $db['default'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => 'localhost',
-// 	'username' => 'root',
-// 	'password' => '',
-// 	'database' => 'ci_mahasiswa',
-// 	'dbdriver' => 'mysqli',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'production'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
-
-// $db['default'] = array(
-//     'dsn'   => '',
-//     'hostname' => 'kameronaphoto.com',
-//     'username' => 'kamerona_sipin',
-//     'password' => '1qaz2wsx3edc',
-//     'database' => 'kamerona_sipin',
-//     'dbdriver' => 'mysqli',
-//     'dbprefix' => '',
-//     'pconnect' => FALSE,
-//     'db_debug' => TRUE,
-//     'cache_on' => FALSE,
-//     'cachedir' => '',
-//     'char_set' => 'utf8',
-//     'dbcollat' => 'utf8_general_ci',
-//     'swap_pre' => '',
-//     'encrypt' => FALSE,
-//     'compress' => FALSE,
-//     'stricton' => FALSE,
-//     'failover' => array(),
-//     'save_queries' => TRUE
 
 $db['default'] = array(
-    //'dsn'   => 'sqlsrv:server=127.0.0.1:1433;Database=sipindb',
-    'hostname' => 'DESKTOP-E2D7SL1\SQLEXPRESS',    
-    'username' => 'sipin',
-    'password' => '101010',
-    'database' => 'sipindb',
-    'dbdriver' => 'sqlsrv',
+    // MariaDB
+    'hostname' => 'kameronaphoto.com',
+    'username' => 'kamerona_sipin',
+    'password' => '1qaz2wsx3edc',
+    'database' => 'kamerona_sipin',
+    'dbdriver' => 'mysqli',
+
+    // SQLServer
+    // 'hostname' => 'DESKTOP-E2D7SL1\SQLEXPRESS',    
+    // 'username' => 'sipin',
+    // 'password' => '101010',
+    // 'database' => 'sipindb',
+    // 'dbdriver' => 'sqlsrv',
+
     'dbprefix' => '',
     'pconnect' => FALSE,
     'db_debug' => TRUE,
