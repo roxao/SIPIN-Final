@@ -105,7 +105,7 @@
       	}
     });
 
-    $('.attach_user_file').append('<div class="clearfix"><div>Bukti Pembayaran</div><a href="<?php echo base_url();?>submit_iin/download?var1='+ value[0].path_file 
+    $('.attach_user_file').append('<div class="clearfix"><div>Bukti Pembayaran</div><a href="<?php echo base_url();?>submit_iin/download?var1='+ window.btoa(value[0].path_file) 
 		 			+'" class="btn_download float_right">Download</a></div>');
     
 </script>

@@ -50,7 +50,7 @@
 					<div>
 						<h1>PENERBITAN IIN BARU</h1>
 						Silakan mengisi form di bawah ini untuk melakukan permohonan IIN baru. Sebelum anda mengirim surat ini melalui sistem
-						<a href="<?php echo base_url("SipinHome/submit_application/"); ?>">
+						<a href="#" onclick="checkDaftar('new')">
 							<span>DAFTAR</span>
 						</a>
 					</div>
@@ -59,7 +59,7 @@
 					<div>
 						<h1>PENGAWASAN IIN LAMA</h1>
 						Silakan mengisi form di bawah ini untuk melakukan permohonan IIN baru. Sebelum anda mengirim surat ini melalui sistem
-						<a href="<?php echo base_url("SipinHome/submit_application/"); ?>">
+						<a href="#" onclick="checkDaftar('extend')">
 							<span>DAFTAR</span>
 						</a>
 					</div>
@@ -67,3 +67,36 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function checkDaftar(type){
+		var isLogin = '<?php echo $this->session->userdata('status') ?>';
+
+		var isContinue = false;
+		var url="SipinHome/submit_application/";
+
+		if(!isLogin || isLogin != 'login'){
+			url="login";
+			swal('Pesan', 'Anda harus login terlebih dahulu', 'error');
+		} else {
+			var isHavingIIN = '<?php echo $this->session->userdata('have_iin') ?>';
+			switch(type){
+			case "new":
+			if(isHavingIIN=='Y'){
+				url = '#';
+				swal('Pesan', 'Anda telah memiliki IIN dan tidak dapat melakukan pendaftaran IIN baru', 'error');
+			}
+				break;
+			case "extend":
+			if(isHavingIIN!='Y'){
+				url = '#';
+				swal('Pesan', 'Anda belum memiliki IIN silahkan melakukan pendaftaran IIN baru', 'error');
+			}
+				break;
+			}
+		}
+
+		window.location.replace(url);
+
+
+		}
+	</script>

@@ -51,7 +51,7 @@
 
 	for (var i = 0; i < value.length; i++) {
 		$('.attach_user_file').append('<div class="clearfix"><div>'+ (i+1) +'. '+ value[i].display_name
-		 			+'</div><a href="<?php echo base_url();?>submit_iin/download?var1='+ value[i].path_file 
+		 			+'</div><a href="<?php echo base_url();?>submit_iin/download?var1='+ window.btoa(value[i].path_file) 
 		 			+'" class="btn_download float_right">Download</a></div>');
 	}
 

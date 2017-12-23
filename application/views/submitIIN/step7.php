@@ -8,7 +8,7 @@
 		 		?>
 		 		<div class="item-download">
 					<div><?php  echo $data->display_name; ?></div>
-					 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo $data->path_file;?>" class="btn_download"  >Download</a>
+					 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo base64_encode($data->path_file);?>" class="btn_download"  >Download</a>
  				</div>	
 		 	 	
 		 <?php 			

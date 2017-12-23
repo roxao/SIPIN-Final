@@ -46,7 +46,7 @@ class Submit_iin extends CI_Controller {
             $id_user = $this->session->userdata('id_user');
             $first_validation = $this->user_model->step_0_validation_1($id_user)->row()->totals;
             /*Validasi apakah ada applikasi yang status nya OPEN*/
-            if ($first_validation == 0) {
+            if ($first_validation == 0) {                
                 if ($this->input->post('kirim') == 'kirim') {
                     $get_document = $this->user_model->get_applications_Status($id_user);
                     $username = $this->session->userdata('username');
@@ -70,7 +70,7 @@ class Submit_iin extends CI_Controller {
                     insert id_application_status_name => x(defined on above validation) Pending
                     */
                     // if ( is_null($get_document->row()->iin_status ) ) {
-                    if (isset($get_document->row()->iin_status) && $get_document->row()->iin_status != 'OPEN') {
+                    if (!isset($get_document->row()->iin_status) || $get_document->row()->iin_status != 'OPEN') {
                         /*Insert Pengajuan*/
                         $inserted_id = $this->user_model->insert_pengajuan($data);
                         $data1 = array(
@@ -92,9 +92,7 @@ class Submit_iin extends CI_Controller {
                         and waiting for admin verification
                         */
                         redirect(base_url("Layanan-IIN"));
-                    } else {
-                        // echo "|ERR: Controller submit_iin - function step_0";
-                    }
+                    } 
                 } else {
                     // echo "Dibatalkan";
                     redirect(base_url("Layanan-IIN"));
@@ -570,7 +568,8 @@ class Submit_iin extends CI_Controller {
             redirect(base_url("SipinHome"));
         }
         $image_id = $this->input->get('var1');
-        force_download($image_id, NULL);
+        //echo ''.base64_decode($image_id);
+        force_download(base64_decode($image_id), NULL);
     }
     /*Melakukan Upload document*/
     function upload_files_assessment() {
@@ -734,7 +733,7 @@ class Submit_iin extends CI_Controller {
             $id_answer = $this->admin_model->survey('insert-answer', $survey_answers);
             $this->model->update_survey_status_user($this->session->userdata('id_user'), $this->session->userdata('username'));
             $this->session->set_userdata('survey_status', '1');
-            redirect(base_url('Layanan-IIN'));
+            redirect(base_url('Layanan-IIN?autodownload=true'));
         break;
         case 'hasil-survei';
         $result = $this->admin_model->survey('get-survey-result', null)->result_array();

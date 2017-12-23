@@ -13,7 +13,7 @@
 		 	 		case 'IPPSA':?>
 		 				<div class="item-download">
 							<div><?php $no++; echo "$no.  "; echo $data->display_name; ?></div>
-							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo $data->file_url;?>" class="btn_download"  >Download</a>
+							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo base64_encode($data->file_url);?>" class="btn_download"  >Download</a>
 		 				</div>	
 		<?php 	
 					break;
@@ -37,13 +37,13 @@
 		 	 		case 'ISO':?>
 		 				<div class="item-download">
 							<div><?php $no++; echo "$no.  "; echo $data->display_name; ?></div>
-							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo $data->file_url;?>" class="btn_download"  >Download</a>
+							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo base64_encode($data->file_url);?>" class="btn_download"  >Download</a>
 		 				</div>	
 		 <?php 			break;
 		 			case 'T&C':?>
 		 				<div class="item-download">
 							<div><?php $no++; echo "$no.  "; echo $data->display_name; ?></div>
-							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo $data->file_url;?>" class="btn_download"  >Download</a>
+							 <a href="<?php echo base_url();?>submit_iin/download?var1=<?php echo base64_encode($data->file_url);?>" class="btn_download"  >Download</a>
 		 				</div>	
 		 <?php 			break;
 				} 

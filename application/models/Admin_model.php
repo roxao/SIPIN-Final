@@ -684,8 +684,8 @@ class Admin_model extends CI_Model {
     public function get_notif($notifikation_type){
         $this->db->select('*');
         $this->db->from('notification');
-        $this->db->where('notification_type', $notifikation_type);
-        // $this->db->where('Status !=', 'INACTIVE');
+        $this->db->where('notification_type', ''.$notifikation_type);
+        $this->db->where('status !=', 'INACTIVE');
        
         $this->db->order_by('id_notification', 'desc');
          $this->db->limit(25,0);
@@ -694,7 +694,7 @@ class Admin_model extends CI_Model {
 
     public function update_notif($condition)
     {
-        $data = array('Status' => 'INACTIVE' );
+        $data = array('status' => 'INACTIVE' );
         $this->db->where('id_notification', $condition);
         $this->db->update('notification',$data);
     }
@@ -863,6 +863,14 @@ class Admin_model extends CI_Model {
         $this->db->where('process_status', 'COMPLETED');     
         $this->db->order_by('id_application_status', 'DESC'); 
         $this->db->limit('1');                    
+        return $this->db->get();
+    }
+
+    public function cek_iin_user($data){
+        $this->db->select('*');
+        $this->db->from('iin');
+        $this->db->where('iin_number',$data);
+
         return $this->db->get();
     }
 

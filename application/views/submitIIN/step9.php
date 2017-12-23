@@ -30,8 +30,8 @@
 		 	 	switch ($data->keys) {
 		 	 		case 'IIN':?>
 		 				<div class="clearfix">
-							<a href="<?php echo base_url()?>submit_iin/download_iin?var1=<?php echo $data->path_file;?> ">
-								<button style="background: #01923f" class="float_right " ><?php echo $buttonDownload9?></button>
+							<a href="<?php echo base_url()?>submit_iin/download_iin?var1=<?php echo base64_encode($data->path_file);?> ">
+								<button style="background: #01923f" class="float_right " id="btnDonwloadIIN"><?php echo $buttonDownload9?></button>
 							</a>
 						</div>
 		<?php 	
@@ -42,3 +42,10 @@
  	</div>
 
 </section>	
+<script>
+	$('document').ready(function(){
+		if(getParameterByName('autodownload')=='true'){
+			$('#btnDonwloadIIN').click();
+		}
+	});
+</script>

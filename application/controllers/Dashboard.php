@@ -307,11 +307,11 @@ class Dashboard extends CI_Controller {
             case 'document':
 
                 $this->load->library('upload');
-                $this->upload->initialize(array("allowed_types" => "gif|jpg|png|jpeg|png", "upload_path" => "./upload/"));
+                $this->upload->initialize(array("allowed_types" => "gif|jpg|png|jpeg|png|pdf", "upload_path" => "./upload/"));
                 $this->upload->do_upload("file_url");
                 $uploaded = $this->upload->data();
                 $condition = array('id_document_config' => $this->input->post('id_document_config'));
-                $data = array('type' => $this->input->post('type_doc'), 'keys' => $this->input->post('keys'), 'display_name' => $this->input->post('display_name'), 'file_url' => $uploaded['full_path'], 'mandatory' => $this->input->post('mandatory'), 'modified_date' => $this->date_time_now(), 'modified_by' => $this->session->userdata('admin_username'));
+                $data = array('type' => $this->input->post('type_doc'), 'keys' => $this->input->post('keys'), 'display_name' => $this->input->post('display_name'), 'file_url' => str_replace(" ","_",$uploaded['full_path']), 'mandatory' => $this->input->post('mandatory'), 'modified_date' => $this->date_time_now(), 'modified_by' => $this->session->userdata('admin_username'));
                 $log = array('detail_log' => $this->session->userdata('admin_role') . ' Update Data Dokumen', 'log_type' => 'Update Data ' . $this->input->post('display_name'), 'created_date' => $this->date_time_now(), 'created_by' => $this->session->userdata('admin_username'));
                 $this->admin_model->update_documenet_config($condition, $data);
                 if($this->input->post('type_doc')=='STATIC')
@@ -478,7 +478,16 @@ class Dashboard extends CI_Controller {
                 $dataApp = array('id_user' => $id_user, 'applicant' => $this->input->post('applicant'), 'applicant_phone_number' => $this->input->post('applicant_phone_number'), 'application_date' => date_format(date_create($this->input->post('application_date')), 'Y-m-d'), 'application_purpose' => 'pengawasan', 'instance_name' => $this->input->post('instance_name'), 'instance_email' => $this->input->post('instance_email'), 'instance_phone' => $this->input->post('instance_phone'), 'instance_director' => $this->input->post('instance_director'), 'mailing_location' => $this->input->post('mailing_location'), 'mailing_number' => $this->input->post('mailing_number'), 'iin_status' => 'CLOSED', 'application_type' => 'extend', 'created_date' => $this->date_time_now(), 'created_by' => $this->session->userdata('admin_username'));
                 $log = array('detail_log' => $this->session->userdata('admin_role') . ' Melakukan penmbahan pada historical data entry', 'log_type' => 'data entry ', 'created_date' => $this->date_time_now(), 'created_by' => $this->session->userdata('admin_username'));
                 $this->admin_model->insert_iin($dataIin);
-                $this->usr_model->insert_pengajuan($dataApp);
+                $id_app_his = $this->usr_model->insert_pengajuan($dataApp);
+
+                $data_app_stat = array(
+                    'id_application' => $id_app_his,
+                    'id_application_status_name' => '1',
+                    'process_status' => 'PENDING', 
+                    'created_date' => $this->date_time_now(), 
+                    'created_by' => $this->session->userdata('admin_username')
+                    );
+                $this->admin_model->insert_app_status($data_app_stat);
                 $this->admin_model->insert_log($log);
                 break;
             case 'update':
@@ -603,4 +612,10 @@ class Dashboard extends CI_Controller {
     public function get_list_cms() {
         echo json_encode($this->admin_model->get_list_cms()->result_array());
     }
+
+    public function iin_check(){
+        $data= $this->admin_model->cek_iin_user($this->input->get('iin_number'))->result();
+        echo json_encode($data);
+    }
+
 }

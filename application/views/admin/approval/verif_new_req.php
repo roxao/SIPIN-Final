@@ -69,7 +69,7 @@
 		<input type="hidden" name="rejectionType" id="rejectionType" value="EXISTING">
 		<textarea name="coment" cols="30" rows="10" class="text_comment" id="coment" style="display:none;"></textarea>
 		<input type="text" id="iinExisting" name="iinExisting">
-		<input type="submit" name="submit_revision" style="display:none;" />
+		<input type="submit" name="submit_revision" style="display:none;" onclick="return checkIINExisted();"/>
 	</form>
 </section>
 
@@ -98,6 +98,28 @@
 	$.base_config_approval();
 </script>
 <script>
+
+	function checkIINExisted(){
+		var baseUrl = <?php echo "'".base_url('dashboard')."'"?>;
+		var iinInput= $("#iinExisting").val();
+		var resp = $.ajax({ 
+				url: baseUrl + "/iin_check?iin_number="+iinInput, 
+				async: false,
+				type: "GET", 
+				dataType: 'json',
+				success: function (data) {}
+				});
+
+			var parsed_data = JSON.parse(resp.responseText);
+
+			if(parsed_data.length < 1){
+				swal("Pesan","Nomor IIN yang dimasukkan tidak terdaftar","error");
+				return false;
+			} else {
+				return true;
+			}
+	}
+
 	function checkRejectionReason(){
 		var reason = $("#reason").val();
 		if(reason == 'OTHER'){

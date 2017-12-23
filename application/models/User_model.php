@@ -624,7 +624,7 @@ class User_model extends CI_Model {
     public function sendMail($email,$username, $subject, $msg) {
         // $encrypted_id = md5($email) ;
         // echo "|encrypted_id : {$encrypted_id} |"; 
-        $smtp_user = 'andaru140789@gmail.com'; # ganti dengan email kalian
+        $smtp_user = 'bsnuat@gmail.com'; # ganti dengan email kalian
         $from_email = 'kerjasama@bsn.go.id'; # ganti dengan email kalian
         // $subject = 'Verify Your Email Address';
 
@@ -655,7 +655,7 @@ class User_model extends CI_Model {
     public function sendMailContactUs($from_email,$username, $subject, $msg) {
         $encrypted_id = md5($email) ;
         // echo "|encrypted_id : {$encrypted_id} |"; 
-        $smtp_user = 'andaru140789@gmail.com'; # ganti dengan email kalian
+        $smtp_user = 'bsnuat@gmail.com'; # ganti dengan email kalian
         // $email = 'kerjasama@bsn.go.id'; # ganti dengan email kalian
         // $subject = 'Verify Your Email Address';
 
@@ -687,7 +687,7 @@ class User_model extends CI_Model {
     // public function forgotPasswordMail($email,$username, $Desc) {
     //     $encrypted_id = md5($email) ;
     //     // echo "|encrypted_id : {$encrypted_id} |";
-    //     $from_email = 'andaru140789@gmail.com'; // ganti dengan email kalian
+    //     $from_email = 'bsnuat@gmail.com'; // ganti dengan email kalian
     //     $subject = 'Verify Your Email Address';
 
 
@@ -714,7 +714,7 @@ class User_model extends CI_Model {
     public function stepMailAdmin($email,$username, $Desc) {
         $encrypted_id = md5($email) ;
         // echo "|encrypted_id : {$encrypted_id} |";
-        $from_email = 'andaru140789@gmail.com'; // ganti dengan email kalian
+        $from_email = 'bsnuat@gmail.com'; // ganti dengan email kalian
         $subject = 'Proses permohonan IIN';
 
 

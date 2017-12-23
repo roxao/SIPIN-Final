@@ -7,6 +7,8 @@
 	<title><?= $web_title ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style.css"/>
+	<link rel="stylesheet" href="<?php echo base_url('assets/js/swal.css'); ?>">
+	<script type="text/javascript" src="<?php echo base_url('assets/js/swal.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.2.1.min.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.slides.min.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/main.js');?>"></script>
@@ -19,7 +21,7 @@
 		<nav class="clearfix">
 			<div class="nav-menu float_left"><div>MENU</div></div>
 			<div class="nav-logo float_left"><a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>/assets/logo.png" alt="SIPIN"></a></div>
-
+		
 			<ul class="nav-list float_left nav-list-menu">
 				<li class="nav-link"><a href="<?php echo base_url();?>">Halaman Depan</a></li>
 				<?php if($this->session->userdata('status') == "login") {?>

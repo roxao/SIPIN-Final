@@ -280,7 +280,7 @@ class SipinHome extends CI_Controller {
                     // $have_iin = ($cek->row()->iin_number ? $cek->row()->iin_number : "N");
                     $get_iin_num = $this->model->get_iin_num($get_passw->row()->id_user);
                     $have_iin = "N";
-                    if (!isset($get_iin_num->row()->iin_number)) {
+                    if (isset($get_iin_num->row()->iin_number)) {
                         #IIN exist
                         $have_iin = "Y";
                     }
@@ -401,6 +401,9 @@ class SipinHome extends CI_Controller {
         if iin_status = 'CLOSED'
         @THIS IS AN ACTIVE APPLICATION (New Application)
         */
+	
+
+
         if ($iin_status == 'CLOSED') {
             if ($have_iin == 'Y') {
                 $data['app_type'] = APPTYPEEXT;
