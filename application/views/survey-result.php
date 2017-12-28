@@ -44,13 +44,9 @@
 
           <div class="survey-row" style="border-top: 3px solid #3b9f57">
             <div class="id_no">  </div>
-            <div class="id_qs" style="color: #3b9f57;font-size: 14pt;line-height: 1.5;">Total Survey</div>
+            <div class="id_qs" style="color: #3b9f57;font-size: 14pt;line-height: 1.5;">IKP</div>
             <div class="id_as td-stars">
-              <div class="c-rating_no"style="color: #3b9f57;"><span><?=(number_format(($sum_total/$i),1))?></span>/5</div>
-              <div class="c-rating hidden">
-                <div class="c-rating_bg"></div>
-                <div class="c-rating_fg" style="width: <?=((100/5)*$x['average'])?>%"></div>
-              </div>
+              <div class="c-rating_no"style="color: #3b9f57;"><span><?=(number_format(($sum_total/$i),1))?></span></div>
             </div>
           </div>
           
