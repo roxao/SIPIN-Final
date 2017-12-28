@@ -76,7 +76,17 @@
 
 		if(!isLogin || isLogin != 'login'){
 			url="login";
-			swal('Pesan', 'Anda harus login terlebih dahulu', 'error');
+			swal({
+				  title: 'Pesan',
+				  text: "Anda harus login terlebih dahulu",
+				  type: 'warning',
+				  confirmButtonColor: '#3085d6',
+				  confirmButtonText: 'Login'
+				}).then((result) => {
+				  if (result.value) {
+				    window.location.replace(url);
+				  }
+				});
 		} else {
 			var isHavingIIN = '<?php echo $this->session->userdata('have_iin') ?>';
 			switch(type){
@@ -93,10 +103,7 @@
 			}
 				break;
 			}
+			window.location.replace(url);
 		}
-
-		window.location.replace(url);
-
-
 		}
 	</script>
