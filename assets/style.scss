@@ -1911,6 +1911,15 @@ footer                {background: #f7f7f7;border-top: 1px solid #ddd;margin-top
   .o-header{
     margin-top: 60px;
   }
+  .o-success{ 
+    display: none;
+    background: rgba(0, 255, 0, 0.2);
+    padding: 6px 10px;
+    border: 1px solid rgba(29, 103, 64,1);
+    border-radius: 3px;
+    color: rgba(61, 184, 121,1);
+    margin: 1px;
+  }
   .o-error{
     display: none;
     background: rgba(255, 0, 0, 0.2);
